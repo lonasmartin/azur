@@ -94,17 +94,16 @@ Lo primero que se debe hacer es utilizar el servicio GertToken para obtener un t
 
 Ejemplo de 
 
-```mermaid  
-graph LR;
-    A((flowed)) -->B((Defectuoso));
-    G((lowdown)) --> H((Main part or idea\nfrom something));
-    L((Hoses\ Manguera)) --> M((Pipe));
-
-    style A fill:#9cf,stroke:#333,stroke-width:2px;
-    style G fill:#9cf,stroke:#333,stroke-width:2px;
-    style L fill:#9cf,stroke:#333,stroke-width:2px;
-
-```
+```mermaid
+sequenceDiagram
+    Cliente->>Servicio GetToken: Solicitud de Token
+    Servicio GetToken-->>Cliente: Retorno del Token
+    Cliente->>Servicio de Negocio: Solicitud con Token
+    Servicio de Negocio->>Servicio CheckToken: Validación del Token
+    Servicio CheckToken-->>Servicio de Negocio: Token Válido
+    Servicio de Negocio->>Cliente: Proceso Continuado
+    Servicio CheckToken-->>Servicio de Negocio: Token Inválido
+    Servicio de Negocio->>Cliente: Mensaje de Error
 
 
 
